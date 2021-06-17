@@ -15,6 +15,15 @@ class CreateArtistasTable extends Migration
     {
         Schema::create('artistas', function (Blueprint $table) {
             $table->id();
+
+            $table->String('Nombre');
+            $table->String('Apellido');
+            $table->integer('Edad');
+            $table->String('Nacionalidad');
+            $table->String('Tipo');
+            $table->String('Género musical');
+            $table->String('Foto');
+
             $table->timestamps();
         });
     }

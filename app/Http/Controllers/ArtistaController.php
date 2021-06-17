@@ -15,6 +15,8 @@ class ArtistaController extends Controller
     public function index()
     {
         //
+        return view('artista.index');
+
     }
 
     /**
@@ -25,6 +27,7 @@ class ArtistaController extends Controller
     public function create()
     {
         //
+        return view('artista.create');
     }
 
     /**
