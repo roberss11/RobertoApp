@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\BandaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,4 @@ Route::get('/artista', function () {
 Route::get('/artista/create',[ArtistaController::class,'create']);
 */
 Route::resource('artista',ArtistaController::class);
+Route::resource('banda',BandaController::class);
