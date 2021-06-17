@@ -15,7 +15,8 @@ class ArtistaController extends Controller
     public function index()
     {
         //
-        return view('artista.index');
+        $datos['artistas']=Artista::paginate(8);
+        return view('artista.index',$datos);
 
     }
 
@@ -40,6 +41,11 @@ class ArtistaController extends Controller
     {
         //
         $datosArtista = request()->except('_token'); 
+
+        if($request->hasFile('Foto')) {
+            $datosArtista['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
         Artista::insert($datosArtista);
         
         return response()->json($datosArtista);
@@ -85,8 +91,10 @@ class ArtistaController extends Controller
      * @param  \App\Models\Artista  $artista
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Artista $artista)
+    public function destroy($id)
     {
         //
+        Artista::destroy($id);
+        return redirect('artista');
     }
 }
