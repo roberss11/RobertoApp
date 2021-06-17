@@ -1,7 +1,8 @@
 
 formulario creacion artistas
 
-<form action="" method="post" enctype="multipart/form-data" >
+<form action="{{ url('/artista') }}" method="post" enctype="multipart/form-data" >
+@csrf
 
 <label for="Nombre"> Nombre </label>
 <input type="text" name="Nombre" id="Nombre">
@@ -18,13 +19,13 @@ formulario creacion artistas
 <label for="Tipo"> Tipo </label>
 <input type="text" name="Tipo" id="Tipo">
 <br>
-<label for="Género musical"> Género musical </label>
-<input type="text" name="Género musical" id="Género musical">
+<label for="GeneroMusical"> Género musical </label>
+<input type="text" name="GeneroMusical" id="GeneroMusical">
 <br>
 <label for="Foto"> Foto </label>
 <input type="file" name="Foto" id="Foto">
 <br>
-<label for="Enviar"> Enviar </label>
-<input type="submit" name="Enviar" id="Enviar">
+
+<input type="submit" value="Guardar datos">
 <br>
 </form>

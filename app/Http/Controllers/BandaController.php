@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artista;
+use App\Models\Banda;
 use Illuminate\Http\Request;
 
-class ArtistaController extends Controller
+class BandaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,6 @@ class ArtistaController extends Controller
     public function index()
     {
         //
-        return view('artista.index');
-
     }
 
     /**
@@ -27,7 +25,6 @@ class ArtistaController extends Controller
     public function create()
     {
         //
-        return view('artista.create');
     }
 
     /**
@@ -39,19 +36,15 @@ class ArtistaController extends Controller
     public function store(Request $request)
     {
         //
-        $datosArtista = request()->except('_token'); 
-        Artista::insert($datosArtista);
-        
-        return response()->json($datosArtista);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function show(Artista $artista)
+    public function show(Banda $banda)
     {
         //
     }
@@ -59,10 +52,10 @@ class ArtistaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Artista $artista)
+    public function edit(Banda $banda)
     {
         //
     }
@@ -71,10 +64,10 @@ class ArtistaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Artista $artista)
+    public function update(Request $request, Banda $banda)
     {
         //
     }
@@ -82,10 +75,10 @@ class ArtistaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Artista $artista)
+    public function destroy(Banda $banda)
     {
         //
     }
