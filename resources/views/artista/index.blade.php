@@ -1,4 +1,12 @@
 Mostrar lista de artistas
+
+@if(Session::has('mensaje'))
+{{ Session::get('mensaje' )}}
+
+@endif
+
+<a href="{{ url('artista/create') }}"> Registrar nuevo artista </a>
+
 <table class="table table-light">
   <thead class="thead-light">
     <tr>
@@ -17,15 +25,21 @@ Mostrar lista de artistas
      @forEach( $artistas as $artista )
     <tr>
       <td>{{ $artista->id }}</td>
-      <td>{{ $artista->Foto }}</td>
+      <td>
+      <img src="{{ asset('storage').'/'.$artista->Foto  }}" width="100" alt="">
+      </td>
       <td>{{ $artista->Nombre }}</td>
       <td>{{ $artista->Apellido }}</td>
       <td>{{ $artista->Edad }}</td>
       <td>{{ $artista->Nacionalidad }}</td>
       <td>{{ $artista->Tipo }}</td>
       <td>{{ $artista->GeneroMusical }}</td>
-      <td>Editar |
-      
+      <td>
+
+      <a href="{{ url('/artista/'.$artista->id.'/edit') }}">
+           Editar 
+      </a>
+
       <form action="{{ url('/artista/'.$artista->id )  }}" method="post">
       @csrf
       {{ method_field('DELETE') }}

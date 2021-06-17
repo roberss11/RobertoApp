@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Artista;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class ArtistaController extends Controller
 {
     /**
@@ -48,7 +50,8 @@ class ArtistaController extends Controller
 
         Artista::insert($datosArtista);
         
-        return response()->json($datosArtista);
+       // return response()->json($datosArtista);
+       return redirect('artista')->with('mensaje','Artista agregado con éxito');
     }
 
     /**
@@ -68,9 +71,11 @@ class ArtistaController extends Controller
      * @param  \App\Models\Artista  $artista
      * @return \Illuminate\Http\Response
      */
-    public function edit(Artista $artista)
+    public function edit($id)
     {
         //
+        $artista=Artista::findOrFail($id);
+        return view('artista.edit', compact('artista') );
     }
 
     /**
@@ -80,9 +85,22 @@ class ArtistaController extends Controller
      * @param  \App\Models\Artista  $artista
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Artista $artista)
+    public function update(Request $request, $id)
     {
         //
+        $datosArtista = request()->except(['_token','_method']);
+        
+        if($request->hasFile('Foto')) {
+            $artista=Artista::findOrFail($id);
+
+            Storage::delete('public/'.$artista->Foto);
+
+            $datosArtista['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
+        Artista::where('id','=',$id)->update($datosArtista);
+        $artista=Artista::findOrFail($id);
+        return view('artista.edit', compact('artista') );
     }
 
     /**
@@ -94,7 +112,15 @@ class ArtistaController extends Controller
     public function destroy($id)
     {
         //
-        Artista::destroy($id);
-        return redirect('artista');
+        $artista=Artista::findOrFail($id);
+
+        if(Storage::delete('public/'.$artista->Foto)){
+
+            Artista::destroy($id);
+
+        }
+
+        
+        return redirect('artista')->with('mensaje','Artista borrado con éxito');
     }
 }

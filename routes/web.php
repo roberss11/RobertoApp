@@ -25,3 +25,6 @@ Route::get('/artista/create',[ArtistaController::class,'create']);
 */
 Route::resource('artista',ArtistaController::class);
 Route::resource('banda',BandaController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
