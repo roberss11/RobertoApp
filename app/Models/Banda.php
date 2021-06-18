@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Banda extends Model
 {
     use HasFactory;
+    
+    public function banda(){
+        return $this->hasMany('App\Models\Artista');
+    }
 }
