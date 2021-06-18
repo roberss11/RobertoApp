@@ -42,6 +42,27 @@ class ArtistaController extends Controller
     public function store(Request $request)
     {
         //
+
+        $campos=[
+          'Nombre'=>'required|string|max:100',
+          'Apellido'=>'required|string|max:100',
+          'Edad'=>'required|integer|max:100',
+          'Nacionalidad'=>'required|string|max:100',
+          'Tipo'=>'required|string|max:100',
+          'GeneroMusical'=>'required|string|max:100',
+          'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es obligatoria',
+            'Foto.required'=>'La foto es obligatoria',
+            'Nacionalidad.required'=>'La nacionalidad es obligatoria',
+            'Edad.required'=>'La edad es obligatoria',
+
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
         $datosArtista = request()->except('_token'); 
 
         if($request->hasFile('Foto')) {

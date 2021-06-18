@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Banda;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class BandaController extends Controller
 {
     /**
@@ -15,6 +17,9 @@ class BandaController extends Controller
     public function index()
     {
         //
+        $datos['bandas']=Banda::paginate(8);
+        return view('banda.index',$datos);
+
     }
 
     /**
@@ -25,6 +30,7 @@ class BandaController extends Controller
     public function create()
     {
         //
+        return view('banda.create');
     }
 
     /**
@@ -36,6 +42,34 @@ class BandaController extends Controller
     public function store(Request $request)
     {
         //
+
+        $campos=[
+          'Nombre'=>'required|string|max:100',
+          'GeneroMusical'=>'required|string|max:100',
+          'NumeroMiembros'=>'required|integer|max:100',
+          'AnoFundacion'=>'required',
+          'Hit'=>'required|string|max:100',
+          'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es obligatoria',
+            'Foto.required'=>'La foto es obligatoria',
+            
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $datosBanda = request()->except('_token'); 
+
+        if($request->hasFile('Foto')) {
+            $datosBanda['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
+        Banda::insert($datosBanda);
+        
+       // return response()->json($datosBanda);
+       return redirect('banda')->with('mensaje','Banda agregado con éxito');
     }
 
     /**
@@ -55,9 +89,11 @@ class BandaController extends Controller
      * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banda $banda)
+    public function edit($id)
     {
         //
+        $banda=Banda::findOrFail($id);
+        return view('banda.edit', compact('banda') );
     }
 
     /**
@@ -67,9 +103,22 @@ class BandaController extends Controller
      * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banda $banda)
+    public function update(Request $request, $id)
     {
         //
+        $datosBanda = request()->except(['_token','_method']);
+        
+        if($request->hasFile('Foto')) {
+            $banda=Banda::findOrFail($id);
+
+            Storage::delete('public/'.$banda->Foto);
+
+            $datosBanda['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+
+        Banda::where('id','=',$id)->update($datosBanda);
+        $banda=Banda::findOrFail($id);
+        return view('banda.edit', compact('banda') );
     }
 
     /**
@@ -78,8 +127,18 @@ class BandaController extends Controller
      * @param  \App\Models\Banda  $banda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banda $banda)
+    public function destroy($id)
     {
         //
+        $banda=Banda::findOrFail($id);
+
+        if(Storage::delete('public/'.$banda->Foto)){
+
+            Banda::destroy($id);
+
+        }
+
+        
+        return redirect('banda')->with('mensaje','Banda borrado con éxito');
     }
 }

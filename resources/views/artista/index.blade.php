@@ -8,8 +8,9 @@
 
 @endif
 
-<a href="{{ url('artista/create') }}"> Registrar nuevo artista </a>
-
+<a href="{{ url('artista/create') }}" class="btn btn-success"> Registrar nuevo artista </a>
+</br>
+</br>
 <table class="table table-light">
   <thead class="thead-light">
     <tr>
@@ -29,7 +30,7 @@
     <tr>
       <td>{{ $artista->id }}</td>
       <td>
-      <img src="{{ asset('storage').'/'.$artista->Foto  }}" width="100" alt="">
+      <img class="img-thumbnail img-fluid" src="{{ asset('storage').'/'.$artista->Foto  }}" width="100" alt="">
       </td>
       <td>{{ $artista->Nombre }}</td>
       <td>{{ $artista->Apellido }}</td>
@@ -39,14 +40,14 @@
       <td>{{ $artista->GeneroMusical }}</td>
       <td>
 
-      <a href="{{ url('/artista/'.$artista->id.'/edit') }}">
+      <a href="{{ url('/artista/'.$artista->id.'/edit') }}" class="btn btn-warning">
            Editar 
       </a>
-
-      <form action="{{ url('/artista/'.$artista->id )  }}" method="post">
+      |
+      <form action="{{ url('/artista/'.$artista->id )  }}" class="d-inline" method="post">
       @csrf
       {{ method_field('DELETE') }}
-      <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+      <input type="submit" class="btn btn-danger" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
 
       </form>
       
