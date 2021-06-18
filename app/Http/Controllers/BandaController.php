@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artista;
 use App\Models\Banda;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 
 class BandaController extends Controller

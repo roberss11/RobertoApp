@@ -29,7 +29,7 @@
 
 <div class="form-group">
 <label for="AnoFundacion"> Año de fundación </label>
-<input type="text" class="form-control" name="AnoFundacion" value="{{ isset($banda->AnoFundacion)?$banda->AnoFundacion:'' }}" id="AnoFundacion">
+<input type="number" class="form-control" name="AnoFundacion" value="{{ isset($banda->AnoFundacion)?$banda->AnoFundacion:'' }}" id="AnoFundacion">
 </div>
 
 <div class="form-group">

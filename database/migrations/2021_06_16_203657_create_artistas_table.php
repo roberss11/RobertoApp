@@ -24,6 +24,9 @@ class CreateArtistasTable extends Migration
             $table->String('GeneroMusical');
             $table->String('Foto');
 
+            $table->unsignedBigInteger('banda_id');
+            $table->foreign('banda_id')->references('id')->on('bandas');
+
             $table->timestamps();
         });
     }

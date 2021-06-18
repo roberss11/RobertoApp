@@ -23,6 +23,14 @@
 <input type="text" class="form-control" name="Apellido" value="{{ isset($artista->Apellido)?$artista->Apellido:'' }}" id="Apellido">
 </div>
 
+<div class="form-group">
+<label for="Nombre" class="form-label">Banda</label>
+ <select class="form-select" name="banda_id" id="banda_id" class="border-light">
+   @foreach ($bandas as $banda)
+ <option value="{{$banda->id}}" id="banda_id">{{$banda->Nombre}}</option>
+   @endforeach
+</select>
+</div>
 
 <div class="form-group">
 <label for="Edad"> Edad </label>

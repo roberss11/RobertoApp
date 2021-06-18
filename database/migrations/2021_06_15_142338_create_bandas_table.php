@@ -19,7 +19,7 @@ class CreateBandasTable extends Migration
             $table->String('Nombre');
             $table->String('GeneroMusical');
             $table->Integer('NumeroMiembros');
-            $table->timestamp('AnoFundacion');
+            $table->Integer('AnoFundacion');
             $table->String('Hit');
             $table->String('Foto');
 

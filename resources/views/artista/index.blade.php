@@ -18,6 +18,7 @@
       <th scope="col">Foto</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
+      <th scope="col">Banda</th>
       <th scope="col">Edad</th>
       <th scope="col">Nacionalidad</th>
       <th scope="col">Tipo</th>
@@ -34,6 +35,13 @@
       </td>
       <td>{{ $artista->Nombre }}</td>
       <td>{{ $artista->Apellido }}</td>
+
+      @foreach ($bandas as $banda)
+      @if($banda->id===$artista->banda_id)
+      <td>{{ $banda->Nombre }}</td>
+      @endif
+      @endforeach
+      
       <td>{{ $artista->Edad }}</td>
       <td>{{ $artista->Nacionalidad }}</td>
       <td>{{ $artista->Tipo }}</td>

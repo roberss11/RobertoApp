@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banda;
 use App\Models\Artista;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 
 class ArtistaController extends Controller
@@ -17,20 +17,21 @@ class ArtistaController extends Controller
     public function index()
     {
         //
-        $datos['artistas']=Artista::paginate(8);
-        return view('artista.index',$datos);
+        $artistas['artistas']=Banda::join("artistas","bandas.id","=","artistas.banda_id")->get();
+        $bandas['bandas']=Banda::all();
+        return view ('artista.index',$artistas, $bandas);
 
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param \App\Models\Banda $bandas
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
-        return view('artista.create');
+        $bandas=Banda::all();
+        return view('artista.create',compact('bandas'));
     }
 
     /**
@@ -51,7 +52,7 @@ class ArtistaController extends Controller
           'Tipo'=>'required|string|max:100',
           'GeneroMusical'=>'required|string|max:100',
           'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
-
+          'banda_id'
         ];
         $mensaje=[
             'required'=>'El :attribute es obligatoria',
@@ -79,6 +80,7 @@ class ArtistaController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda $banda
      * @return \Illuminate\Http\Response
      */
     public function show(Artista $artista)
@@ -90,13 +92,15 @@ class ArtistaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Artista  $artista
+     * @param  \App\Models\Banda $banda
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Artista $artista)
     {
         //
-        $artista=Artista::findOrFail($id);
-        return view('artista.edit', compact('artista') );
+        $bandas= Banda::all();
+
+        return view('artista.edit', compact('artista','bandas'));
     }
 
     /**
