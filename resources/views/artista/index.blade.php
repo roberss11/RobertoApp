@@ -1,4 +1,7 @@
-Mostrar lista de artistas
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
 
 @if(Session::has('mensaje'))
 {{ Session::get('mensaje' )}}
@@ -52,3 +55,5 @@ Mostrar lista de artistas
      @endforeach
   </tbody>
 </table>
+</div>
+@endsection

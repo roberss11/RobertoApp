@@ -23,8 +23,13 @@ Route::get('/artista', function () {
 });
 Route::get('/artista/create',[ArtistaController::class,'create']);
 */
-Route::resource('artista',ArtistaController::class);
-Route::resource('banda',BandaController::class);
-Auth::routes();
+Route::resource('artista',ArtistaController::class)->middleware('auth');
+Route::resource('banda',BandaController::class)->middleware('auth');
+Auth::routes(['register'=>true,'reset'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [ArtistaController::class, 'index'])->name('home');
+    
+Route::group(['middleware' => 'auth'], function () {
+      
+    Route::get('/', [ArtistaController::class, 'index'])->name('home');
+});
