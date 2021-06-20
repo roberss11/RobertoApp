@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<body  style="background-image: url(imagenes/FondoBandas.jpg);">
 <div class="container">
 
 @if(Session::has('mensaje'))
@@ -8,10 +9,10 @@
 
 @endif
 
-<a href="{{ url('banda/create') }}" class="btn btn-success"> Registrar nueva Banda </a>
+<a href="{{ url('banda/create') }}" class="btn btn-danger" style="background-color: orange"> Registrar nueva Banda </a>
 </br>
 </br>
-<table class="table table-light">
+<table class="table table-danger">
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
@@ -44,7 +45,7 @@
            Editar 
       </a>
       |
-      <form action="{{ url('/banda/'.$banda->id )  }}" class="d-inline" method="post">
+      <form action="{{ url('/banda/'.$banda->id )  }}"  class="d-inline" method="post">
       @csrf
       {{ method_field('DELETE') }}
       <input type="submit" class="btn btn-danger" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
@@ -57,4 +58,5 @@
   </tbody>
 </table>
 </div>
+</body>
 @endsection

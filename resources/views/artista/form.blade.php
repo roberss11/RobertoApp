@@ -1,3 +1,4 @@
+<body style="background-color: #E5A2A2; ">
 <h1> {{ $modo }} Artista </h1>
 
 @if(count($errors)>0)
@@ -60,8 +61,9 @@
 <input type="file" class="form-group" name="Foto" value="" id="Foto">
 </div>
 
-<input class="btn btn-success" type="submit" value="{{ $modo }} datos">
+<input class="btn btn-warning" type="submit" value="{{ $modo }} datos">
 
-<a class="btn btn-primary" href="{{ url('artista/') }}"> Volver </a>
+<a class="btn btn-danger" href="{{ url('artista/') }}"> Volver </a>
 
 <br>
+</body>

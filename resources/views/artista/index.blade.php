@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<body  style="background-image: url(imagenes/FondoArtistas.jpg);">
 <div class="container">
 
 @if(Session::has('mensaje'))
@@ -8,11 +9,11 @@
 
 @endif
 
-<a href="{{ url('artista/create') }}" class="btn btn-success"> Registrar nuevo artista </a>
+<a href="{{ url('artista/create') }}" class="btn btn-danger" style="background-color: orange"> Registrar nuevo artista </a>
 </br>
 </br>
-<table class="table table-light">
-  <thead class="thead-light">
+<table class="table table-danger">
+  <thead class="thead-light" >
     <tr>
       <th scope="col">#</th>
       <th scope="col">Foto</th>
@@ -65,4 +66,5 @@
   </tbody>
 </table>
 </div>
+</body>
 @endsection

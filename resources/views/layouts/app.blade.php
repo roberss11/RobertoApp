@@ -21,10 +21,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar navbar-light shadow-sm" class="nav-item active" style="background-color: #C63C3C;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" class="nav-link" href="{{ url('/') }}">
+                    RobertoApp
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,6 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                      </li>
+                      <a class="nav-link" href="{{ route('artista.index') }}">{{ __('Artistas') }}</a>
+                      <a class="nav-link" href="{{ route('banda.index') }}">{{ __('Bandas') }}</a>
 
                     </ul>
 
