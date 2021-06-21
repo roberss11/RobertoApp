@@ -51,16 +51,15 @@ class ArtistaController extends Controller
           'Nacionalidad'=>'required|string|max:100',
           'Tipo'=>'required|string|max:100',
           'GeneroMusical'=>'required|string|max:100',
-          'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
           'banda_id'
         ];
         $mensaje=[
             'required'=>'El :attribute es obligatoria',
-            'Foto.required'=>'La foto es obligatoria',
             'Nacionalidad.required'=>'La nacionalidad es obligatoria',
             'Edad.required'=>'La edad es obligatoria',
 
         ];
+
 
         $this->validate($request, $campos, $mensaje);
 
@@ -86,6 +85,7 @@ class ArtistaController extends Controller
     public function show(Artista $artista)
     {
         //
+        return view ('artistas.show', compact('artista','bandas'));
     }
 
     /**
@@ -99,6 +99,7 @@ class ArtistaController extends Controller
     {
         //
         $bandas= Banda::all();
+        
 
         return view('artista.edit', compact('artista','bandas'));
     }
@@ -113,6 +114,33 @@ class ArtistaController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'Apellido'=>'required|string|max:100',
+            'Edad'=>'required|integer|max:100',
+            'Nacionalidad'=>'required|string|max:100',
+            'Tipo'=>'required|string|max:100',
+            'GeneroMusical'=>'required|string|max:100',
+            'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
+            'banda_id'
+          ];
+          $mensaje=[
+              'required'=>'El :attribute es obligatoria',
+              'Foto.required'=>'La foto es obligatoria',
+              'Nacionalidad.required'=>'La nacionalidad es obligatoria',
+              'Edad.required'=>'La edad es obligatoria',
+  
+          ];
+
+          if($request->hasFile('Foto')) {
+            $campos=['Foto'=>'required|max:10000|mimes:jpeg,png,jpg'];
+            $mensaje=['Foto.required'=>'La foto es obligatoria' ];
+         }
+  
+          $this->validate($request, $campos, $mensaje);
+
         $datosArtista = request()->except(['_token','_method']);
         
         if($request->hasFile('Foto')) {
@@ -125,7 +153,9 @@ class ArtistaController extends Controller
 
         Artista::where('id','=',$id)->update($datosArtista);
         $artista=Artista::findOrFail($id);
-        return view('artista.edit', compact('artista') );
+        // return view('artista.edit', compact('artista') );
+        return redirect('artista')->with('mensaje','Artista modificado');
+
     }
 
     /**

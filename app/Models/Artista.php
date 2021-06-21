@@ -9,6 +9,7 @@ class Artista extends Model
 {
     use HasFactory;
 
-    public function artista(){
-        return $this->belongsTo('App\Models\Banda');}
+    public function Artista(){
+        return $this->belongsTo(Banda::class);
+    }
 }

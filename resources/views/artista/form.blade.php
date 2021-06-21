@@ -15,18 +15,17 @@
 
 <div class="form-group">
 <label for="Nombre"> Nombre </label>
-<input type="text" class="form-control" name="Nombre" value="{{ isset($artista->Nombre)?$artista->Nombre:'' }}" id="Nombre">
+<input type="text" class="form-control" name="Nombre" value="{{ isset($artista->Nombre)?$artista->Nombre:old('Nombre') }}" id="Nombre">
 </div>
-
 
 <div class="form-group">
 <label for="Apellido"> Apellido </label>
-<input type="text" class="form-control" name="Apellido" value="{{ isset($artista->Apellido)?$artista->Apellido:'' }}" id="Apellido">
+<input type="text" class="form-control" name="Apellido" value="{{ isset($artista->Apellido)?$artista->Apellido:old('Apellido')  }}" id="Apellido">
 </div>
 
 <div class="form-group">
 <label for="Nombre" class="form-label">Banda</label>
- <select class="form-select" name="banda_id" id="banda_id" class="border-light">
+ <select class="form-select" name="banda_id" id="banda_id"  class="border-light">
    @foreach ($bandas as $banda)
  <option value="{{$banda->id}}" id="banda_id">{{$banda->Nombre}}</option>
    @endforeach
@@ -35,22 +34,22 @@
 
 <div class="form-group">
 <label for="Edad"> Edad </label>
-<input type="number" class="form-control" name="Edad" value="{{ isset($artista->Edad)?$artista->Edad:'' }}" id="Edad">
+<input type="number" class="form-control" name="Edad" value="{{ isset($artista->Edad)?$artista->Edad:old('Edad') }}" id="Edad">
 </div>
 
 <div class="form-group">
 <label for="Nacionalidad"> Nacionalidad </label>
-<input type="text" class="form-control" name="Nacionalidad" value="{{ isset($artista->Nacionalidad)?$artista->Nacionalidad:'' }}" id="Nacionalidad">
+<input type="text" class="form-control" name="Nacionalidad" value="{{ isset($artista->Nacionalidad)?$artista->Nacionalidad:old('Nacionalidad') }}" id="Nacionalidad">
 </div>
 
 <div class="form-group">
 <label for="Tipo"> Tipo </label>
-<input type="text" class="form-control" name="Tipo" value="{{ isset($artista->Tipo)?$artista->Tipo:'' }}" id="Tipo">
+<input type="text" class="form-control" name="Tipo" value="{{ isset($artista->Tipo)?$artista->Tipo:old('Tipo') }}" id="Tipo">
 </div>
 
 <div class="form-group">
 <label for="GeneroMusical"> Género musical </label>
-<input type="text" class="form-control" name="GeneroMusical" value="{{ isset($artista->GeneroMusical)?$artista->GeneroMusical:'' }}" id="GeneroMusical">
+<input type="text" class="form-control" name="GeneroMusical" value="{{ isset($artista->GeneroMusical)?$artista->GeneroMusical:old('GeneroMusical') }}" id="GeneroMusical">
 </div>
 
 <div class="form-group">

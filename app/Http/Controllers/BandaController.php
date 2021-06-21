@@ -17,7 +17,7 @@ class BandaController extends Controller
     public function index()
     {
         //
-        $datos['bandas']=Banda::paginate(8);
+        $datos['bandas']=Banda::paginate(1);
         return view('banda.index',$datos);
 
     }
@@ -69,7 +69,7 @@ class BandaController extends Controller
         Banda::insert($datosBanda);
         
        // return response()->json($datosBanda);
-       return redirect('banda')->with('mensaje','Banda agregado con éxito');
+       return redirect('banda')->with('mensaje','Banda agregada con éxito');
     }
 
     /**
@@ -81,6 +81,7 @@ class BandaController extends Controller
     public function show(Banda $banda)
     {
         //
+        return view ('banda.show',compact('banda'));
     }
 
     /**
@@ -106,6 +107,30 @@ class BandaController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'GeneroMusical'=>'required|string|max:100',
+            'NumeroMiembros'=>'required|integer|max:100',
+            'AnoFundacion'=>'required',
+            'Hit'=>'required|string|max:100',
+            
+  
+          ];
+          $mensaje=[
+              'required'=>'El :attribute es obligatoria',
+              
+          ];
+
+          if($request->hasFile('Foto')) {
+            $campos=['Foto'=>'required|max:10000|mimes:jpeg,png,jpg'];
+
+            $mensaje=['Foto.required'=>'La foto es obligatoria'];
+          }
+  
+          $this->validate($request, $campos, $mensaje);
+  
+
         $datosBanda = request()->except(['_token','_method']);
         
         if($request->hasFile('Foto')) {
@@ -118,7 +143,8 @@ class BandaController extends Controller
 
         Banda::where('id','=',$id)->update($datosBanda);
         $banda=Banda::findOrFail($id);
-        return view('banda.edit', compact('banda') );
+        // return view('banda.edit', compact('banda') );
+        return redirect('banda')->with('mensaje','Banda modificada');
     }
 
     /**
@@ -139,6 +165,6 @@ class BandaController extends Controller
         }
 
         
-        return redirect('banda')->with('mensaje','Banda borrado con éxito');
+        return redirect('banda')->with('mensaje','Banda borrada con éxito');
     }
 }

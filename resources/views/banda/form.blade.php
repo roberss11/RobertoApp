@@ -15,27 +15,27 @@
 
 <div class="form-group">
 <label for="Nombre"> Nombre </label>
-<input type="text" class="form-control" name="Nombre" value="{{ isset($banda->Nombre)?$banda->Nombre:'' }}" id="Nombre">
+<input type="text" class="form-control" name="Nombre" value="{{ isset($banda->Nombre)?$banda->Nombre:old('Nombre') }}" id="Nombre">
 </div>
 
 <div class="form-group">
 <label for="GeneroMusical"> Género musical </label>
-<input type="text" class="form-control" name="GeneroMusical" value="{{ isset($banda->GeneroMusical)?$banda->GeneroMusical:'' }}" id="GeneroMusical">
+<input type="text" class="form-control" name="GeneroMusical" value="{{ isset($banda->GeneroMusical)?$banda->GeneroMusical:old('GeneroMusical')  }}" id="GeneroMusical">
 </div>
 
 <div class="form-group">
 <label for="NumeroMiembros"> Numero de miembros </label>
-<input type="number" class="form-control" name="NumeroMiembros" value="{{ isset($banda->NumeroMiembros)?$banda->NumeroMiembros:'' }}" id="NumeroMiembros">
+<input type="number" class="form-control" name="NumeroMiembros" value="{{ isset($banda->NumeroMiembros)?$banda->NumeroMiembros:old('NumeroMiembros')  }}" id="NumeroMiembros">
 </div>
 
 <div class="form-group">
 <label for="AnoFundacion"> Año de fundación </label>
-<input type="number" class="form-control" name="AnoFundacion" value="{{ isset($banda->AnoFundacion)?$banda->AnoFundacion:'' }}" id="AnoFundacion">
+<input type="number" class="form-control" name="AnoFundacion" value="{{ isset($banda->AnoFundacion)?$banda->AnoFundacion:old('AnoFundacion')  }}" id="AnoFundacion">
 </div>
 
 <div class="form-group">
 <label for="Hit"> Hit </label>
-<input type="text" class="form-control" name="Hit" value="{{ isset($banda->Hit)?$banda->Hit:'' }}" id="Hit">
+<input type="text" class="form-control" name="Hit" value="{{ isset($banda->Hit)?$banda->Hit:old('Hit')  }}" id="Hit">
 </div>
 
 <div class="form-group">

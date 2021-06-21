@@ -27,9 +27,9 @@ Route::resource('artista',ArtistaController::class)->middleware('auth');
 Route::resource('banda',BandaController::class)->middleware('auth');
 Auth::routes(['register'=>true,'reset'=>true]);
 
-Route::get('/home', [ArtistaController::class, 'index'])->name('home');
+Route::get('/home', [BandaController::class, 'index'])->name('home');
     
 Route::group(['middleware' => 'auth'], function () {
       
-    Route::get('/', [ArtistaController::class, 'index'])->name('home');
+    Route::get('/home', [BandaController::class, 'index'])->name('home');
 });
